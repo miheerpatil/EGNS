@@ -1,0 +1,30 @@
+"Distance:",distance,"cm" :
+
+f = open("reading.txt", "w")
+f.write("the distance is: (%d) centimeters" % distance)
+f.close()
+After running the script, you should have a text file called “reading.txt”.
+
+Now you can play it with espeak using the following line:
+
+espeak -f reading.txt
+You can also combine these two commands into a bash file so that you can execute both of them at once. So first create a bash file:
+
+touch tell_distance.bash
+Then open the file by:
+
+nano tell_distance.bash
+And write there the following two lines:
+
+sudo python range_sensor.py
+espeak -f reading.txt
+and then “ctrl + x” to exit and “y” to save it. Then you need to make the file executable with:
+
+chmod +x tell_distance.bash
+and finally you can run it with ./tell_distance.bash.
+
+You might need to set the sound output on your raspberry pi to analogue, you can do that by typing this to the terminal:
+
+amixer cset numid=3 1
+(amixer cset numid=3 2 will set it to HDMI)
+
